@@ -5,18 +5,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc_test/generated/mobile_api_gen/mobile_api.pbgrpc.dart';
 import 'package:grpc_test/services/auth.dart';
+import 'package:grpc_test/global.dart' as global;
 
 class UserService {
   UserService._internal();
   static final UserService instance = UserService._internal();
 
-  MobileApiClient mobileApiClient =
-      MobileApiClient(ClientChannel('192.168.76.2', //localhost
-          port: 8080,
-          //'192.168.31.221', // wifi
-          //'www.wsai.pp.ua',
-          //port: 6084,
-          options: ChannelOptions(credentials: ChannelCredentials.insecure())));
+  MobileApiClient mobileApiClient = MobileApiClient(ClientChannel(global.ip,
+      port: global.port,
+      options: ChannelOptions(credentials: ChannelCredentials.insecure())));
 
   /*static int _port = 6000;
   static String _ip = '192.168.76.2';
