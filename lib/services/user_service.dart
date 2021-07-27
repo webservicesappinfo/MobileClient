@@ -22,7 +22,12 @@ class UserService {
 
   AppUser? get _currentUser => AuthService().user;
 
-  void addUser(AppUser user) async {
+  void TryAddCurrentUser() async {
+    addUser(_currentUser);
+  }
+
+  void addUser(AppUser? user) async {
+    if (user == null) return;
     var response = await mobileApiClient.apiAddUser(new ApiAddUserRequest(
         guid: user.uidFB,
         name: "${user.name}/${user.email}",
