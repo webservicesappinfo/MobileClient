@@ -10,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grpc_test/screens/home_page.dart';
 import 'package:grpc_test/screens/login_page.dart';
 import 'package:grpc_test/services/auth.dart';
+import 'global.dart' as global;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,13 +60,12 @@ class _MyHomePageState extends State<MyHomePage> {
   String _result = '';
   final myController = TextEditingController();
 
-  GreeterClient client = GreeterClient(ClientChannel('wsai.pp.ua',
-      port: 8084,
+  GreeterClient client = GreeterClient(ClientChannel(global.ip,
+      port: global.port,
       options: ChannelOptions(credentials: ChannelCredentials.insecure())));
 
-  MobileApiClient userSeviceClient = MobileApiClient(ClientChannel(
-      '192.168.76.2',
-      port: 8080,
+  MobileApiClient userSeviceClient = MobileApiClient(ClientChannel(global.ip,
+      port: global.port,
       options: ChannelOptions(credentials: ChannelCredentials.insecure())));
 
   void _callGrpcService() async {
