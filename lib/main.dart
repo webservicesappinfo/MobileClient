@@ -10,7 +10,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grpc_test/screens/home_page.dart';
 import 'package:grpc_test/screens/login_page.dart';
 import 'package:grpc_test/services/auth.dart';
+<<<<<<< HEAD
 import 'global.dart' as global;
+=======
+import 'services/user_service.dart';
+>>>>>>> e5187c2eac9b107da415a1212136cf11d0d05176
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +25,11 @@ void main() async {
         stream: AuthService().authStateChange(),
         builder: (_, snapshot) {
           final isSignedIn = snapshot.data != null;
-          return isSignedIn ? HomePage() : LoginPage();
+          if( isSignedIn){
+            UserService.instance.TryAddCurrentUser();
+            return HomePage();
+          }  
+          else return LoginPage();
         },
       ),
       title: "Grpc_test",
