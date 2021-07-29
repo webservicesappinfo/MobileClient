@@ -42,9 +42,14 @@ class AuthService {
         : null;
   }
 
+  Future<AppUser?> reLoginWithGoogle() async {
+    await signOut();
+    var user = await loginWithGoogle();
+    return user;
+  }
+
   Future<AppUser?> loginWithGoogle() async {
     try {
-      await _googleSignIn.signOut();
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
@@ -64,31 +69,11 @@ class AuthService {
               .collection("users")
               .doc(currentUser.uidFB)
               .set(currentUser.toJsonForFC());*/
-      _firebaseMessaging.onTokenRefresh.listen((token) => {
-            //_userService.saveToken(_userFromFirebaseUser(user), token)
-          });
-      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        print('Got a message whilst in the foreground!');
-        print('Message data: ${message.data}');
-
-        if (message.notification != null) {
-          print(
-              'Message also contained a notification: ${message.notification}');
-        }
-      });
-      FirebaseMessaging.onBackgroundMessage(
-          _firebaseMessagingBackgroundHandler);
-
       return _appUser;
     } catch (error) {
       print(error.toString());
       return null;
     }
-  }
-
-  Future<void> _firebaseMessagingBackgroundHandler(
-      RemoteMessage message) async {
-    print("Handling a background message: ${message.messageId}");
   }
 
   // sign in anon

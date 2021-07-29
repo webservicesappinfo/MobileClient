@@ -132,7 +132,7 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
           );
           return;
         }
-        _auth.loginWithGoogle().whenComplete(() {
+        _auth.reLoginWithGoogle().whenComplete(() {
           /*Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) {

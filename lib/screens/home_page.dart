@@ -3,6 +3,7 @@ import 'package:grpc_test/models/app_user.dart';
 import 'package:grpc_test/screens/chat_page.dart';
 import 'package:grpc_test/services/auth.dart';
 import 'package:grpc_test/services/user_service.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,6 +11,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,11 +47,13 @@ class _HomePageState extends State<HomePage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => ChatPage(
-                                      anotherUser: snapshot.requireData[index - 1]),
+                                      anotherUser:
+                                          snapshot.requireData[index - 1]),
                                 ),
                               );
                             },
-                            child: Text(snapshot.requireData[index - 1].name ?? "",
+                            child: Text(
+                                snapshot.requireData[index - 1].name ?? "",
                                 style: TextStyle(fontSize: 15)));
                       }
                     });

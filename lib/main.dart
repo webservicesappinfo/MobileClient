@@ -10,26 +10,52 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grpc_test/screens/home_page.dart';
 import 'package:grpc_test/screens/login_page.dart';
 import 'package:grpc_test/services/auth.dart';
-<<<<<<< HEAD
 import 'global.dart' as global;
-=======
 import 'services/user_service.dart';
->>>>>>> e5187c2eac9b107da415a1212136cf11d0d05176
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print("Handling a background message: ${message.messageId}");
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FirebaseMessaging.instance.getToken();
+
+  FirebaseMessaging.instance.onTokenRefresh.listen((token) => {
+        //_userService.saveToken(_userFromFirebaseUser(user), token)
+      });
+
+  FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage? message) {
+    if (message != null) {
+      print("init msg");
+    }
+  });
+
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    print('A new onMessageOpenedApp event was published!');
+  });
+
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    print('Got a message whilst in the foreground!');
+    print('Message data: ${message.data}');
+
+    if (message.notification != null) {
+      print('Message also contained a notification: ${message.notification}');
+    }
+  });
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
   runApp(
     MaterialApp(
       home: StreamBuilder<User?>(
         stream: AuthService().authStateChange(),
         builder: (_, snapshot) {
-          final isSignedIn = snapshot.data != null;
-          if( isSignedIn){
-            UserService.instance.TryAddCurrentUser();
-            return HomePage();
-          }  
-          else return LoginPage();
+          FirebaseAuth.instance.currentUser?.reload();
+          final isSignedIn = snapshot.data != null && AuthService().isSignedIn;
+          return isSignedIn ? HomePage() : LoginPage();
         },
       ),
       title: "Grpc_test",
