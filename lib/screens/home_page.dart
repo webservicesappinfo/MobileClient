@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:grpc_test/models/app_user.dart';
 import 'package:grpc_test/screens/chat_page.dart';
+import 'package:grpc_test/screens/profile_page.dart';
 import 'package:grpc_test/services/auth.dart';
 import 'package:grpc_test/services/user_service.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:grpc_test/constants.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,10 +18,36 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  void choiceAction(String choice) {}
+
+  void floatBtnAction() {
+    print("floatBtn click");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('HomePage')),
+      appBar: AppBar(
+        title: Text('HomePage'),
+        actions: <Widget>[
+          PopupMenuButton<String>(onSelected: (String choice) {
+            if (choice == Constants.profile) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(),
+                ),
+              );
+            } else if (choice == Constants.signOut) {
+              AuthService().signOut();
+            }
+          }, itemBuilder: (BuildContext context) {
+            return Constants.settingsBtnChoices.map((String choice) {
+              return PopupMenuItem<String>(value: choice, child: Text(choice));
+            }).toList();
+          })
+        ],
+      ),
       body: Form(
         key: UniqueKey(),
         child: FutureBuilder<List<AppUser>>(
@@ -64,8 +91,8 @@ class _HomePageState extends State<HomePage> {
             }),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => AuthService().signOut(),
-        child: Icon(Icons.exit_to_app),
+        onPressed: () => floatBtnAction,
+        child: Icon(Icons.plus_one),
       ),
     );
   }

@@ -5,10 +5,20 @@
          In most cases you can leave this as-is, but you if you want to provide
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
+
+    <!-- Add this permission for Google maps -->
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION" />
+        
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="grpc_test"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data 
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC7Ahq-jx9Codm4xi_5q0BJAUiVUYBEvjU"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

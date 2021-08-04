@@ -22,10 +22,6 @@ class UserService {
 
   AppUser? get _currentUser => AuthService().user;
 
-  void TryAddCurrentUser() async {
-    addUser(_currentUser);
-  }
-
   void addUser(AppUser? user) async {
     if (user == null) return;
     var response = await mobileApiClient.apiAddUser(new ApiAddUserRequest(
