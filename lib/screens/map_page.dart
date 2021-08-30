@@ -16,7 +16,7 @@ class _MapPageState extends State<MapPage> {
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
   int _markerIdCounter = 0;
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
+  static CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
@@ -57,6 +57,10 @@ class _MapPageState extends State<MapPage> {
       },
     );
     markers[markerId] = marker;
+    _kGooglePlex = CameraPosition(
+      target: location,
+      zoom: 14.4746,
+    );
   }
 
   @override
