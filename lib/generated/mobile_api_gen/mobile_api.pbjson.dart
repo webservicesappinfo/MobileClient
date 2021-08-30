@@ -114,3 +114,47 @@ const ApiSendMessageReply$json = const {
 
 /// Descriptor for `ApiSendMessageReply`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List apiSendMessageReplyDescriptor = $convert.base64Decode('ChNBcGlTZW5kTWVzc2FnZVJlcGx5EhYKBnN0YXR1cxgBIAEoCFIGc3RhdHVz');
+@$core.Deprecated('Use apiGetUserLocationRequestDescriptor instead')
+const ApiGetUserLocationRequest$json = const {
+  '1': 'ApiGetUserLocationRequest',
+  '2': const [
+    const {'1': 'guid', '3': 1, '4': 1, '5': 9, '10': 'guid'},
+  ],
+};
+
+/// Descriptor for `ApiGetUserLocationRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List apiGetUserLocationRequestDescriptor = $convert.base64Decode('ChlBcGlHZXRVc2VyTG9jYXRpb25SZXF1ZXN0EhIKBGd1aWQYASABKAlSBGd1aWQ=');
+@$core.Deprecated('Use apiGetUserLocationReplyDescriptor instead')
+const ApiGetUserLocationReply$json = const {
+  '1': 'ApiGetUserLocationReply',
+  '2': const [
+    const {'1': 'forGuid', '3': 1, '4': 1, '5': 9, '10': 'forGuid'},
+    const {'1': 'lat', '3': 2, '4': 1, '5': 9, '10': 'lat'},
+    const {'1': 'lng', '3': 3, '4': 1, '5': 9, '10': 'lng'},
+  ],
+};
+
+/// Descriptor for `ApiGetUserLocationReply`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List apiGetUserLocationReplyDescriptor = $convert.base64Decode('ChdBcGlHZXRVc2VyTG9jYXRpb25SZXBseRIYCgdmb3JHdWlkGAEgASgJUgdmb3JHdWlkEhAKA2xhdBgCIAEoCVIDbGF0EhAKA2xuZxgDIAEoCVIDbG5n');
+@$core.Deprecated('Use apiSetUserLocationRequestDescriptor instead')
+const ApiSetUserLocationRequest$json = const {
+  '1': 'ApiSetUserLocationRequest',
+  '2': const [
+    const {'1': 'forGuid', '3': 1, '4': 1, '5': 9, '10': 'forGuid'},
+    const {'1': 'lat', '3': 2, '4': 1, '5': 9, '10': 'lat'},
+    const {'1': 'lng', '3': 3, '4': 1, '5': 9, '10': 'lng'},
+  ],
+};
+
+/// Descriptor for `ApiSetUserLocationRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List apiSetUserLocationRequestDescriptor = $convert.base64Decode('ChlBcGlTZXRVc2VyTG9jYXRpb25SZXF1ZXN0EhgKB2Zvckd1aWQYASABKAlSB2Zvckd1aWQSEAoDbGF0GAIgASgJUgNsYXQSEAoDbG5nGAMgASgJUgNsbmc=');
+@$core.Deprecated('Use apiSetUserLocationReplyDescriptor instead')
+const ApiSetUserLocationReply$json = const {
+  '1': 'ApiSetUserLocationReply',
+  '2': const [
+    const {'1': 'isSet', '3': 1, '4': 1, '5': 8, '10': 'isSet'},
+  ],
+};
+
+/// Descriptor for `ApiSetUserLocationReply`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List apiSetUserLocationReplyDescriptor = $convert.base64Decode('ChdBcGlTZXRVc2VyTG9jYXRpb25SZXBseRIUCgVpc1NldBgBIAEoCFIFaXNTZXQ=');

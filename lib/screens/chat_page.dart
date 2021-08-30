@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grpc_test/models/app_user.dart';
 import 'package:grpc_test/services/user_service.dart';
+import 'package:grpc_test/screens/map_page.dart';
 
 class ChatPage extends StatefulWidget {
   final AppUser anotherUser;
@@ -27,22 +28,25 @@ class _ChatPageState extends State<ChatPage> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Align(
-                        child: Text(snapshot.requireData,
-                            style: TextStyle(fontSize: 22)),
-                            alignment: Alignment.topLeft,),
+                      child: Text(snapshot.requireData,
+                          style: TextStyle(fontSize: 22)),
+                      alignment: Alignment.topLeft,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Align(
-                        child: Text(snapshot.requireData,
-                            style: TextStyle(fontSize: 22)),
-                            alignment: Alignment.topRight,),
+                      child: Text(snapshot.requireData,
+                          style: TextStyle(fontSize: 22)),
+                      alignment: Alignment.topRight,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
                       decoration: InputDecoration(
-                          border: OutlineInputBorder(), hintText: 'Enter a msg'),
+                          border: OutlineInputBorder(),
+                          hintText: 'Enter a msg'),
                       controller: myController,
                     ),
                   ),
@@ -54,7 +58,37 @@ class _ChatPageState extends State<ChatPage> {
                           myController.clear();
                         });
                       },
-                      child: Text('Send Msg!', style: TextStyle(fontSize: 22)))
+                      child: Text('Send Msg!', style: TextStyle(fontSize: 22))),
+                  ElevatedButton(
+                    onPressed: () async {
+                      var location = await UserService.instance
+                          .getUserLocation(widget.anotherUser);
+                      if (location != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MapPage(
+                              location: location,
+                            ),
+                          ),
+                        );
+                      } else
+                        showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('AlertDialog Title'),
+                                  content: const Text('Location not found'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'OK'),
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ));
+                    },
+                    child: Text("Show Location"),
+                  )
                 ]);
               } else if (snapshot.hasError)
                 return Text("${snapshot.error}");

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grpc_test/services/auth.dart';
-import 'package:grpc_test/screens/home_page.dart';
-import 'package:grpc_test/screens/map_page.dart';
-import 'package:grpc_test/screens/map_picker_page.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_place_picker/google_maps_place_picker.dart';
+import 'package:grpc_test/services/user_service.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -21,9 +21,30 @@ class ProfilePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MapPickerPage(),
+                    builder: (context) => PlacePicker(
+                      apiKey: 'AIzaSyBWDYa13kTf47oaSuLW-fLgJFaU1YdS8Bs',
+                      onPlacePicked: (result) {
+                        print(result.adrAddress);
+                        var user = AuthService().user;
+                        var location = result.geometry?.location;
+                        if (location != null && user != null) {
+                          user.location = LatLng(location.lat, location.lng);
+                          UserService.instance.setUserLocation(user);
+                        }
+                        Navigator.of(context).pop();
+                      },
+                      initialPosition: AuthService().user?.location ??
+                          LatLng(-33.8567844, 151.213108),
+                      useCurrentLocation: true,
+                    ),
                   ),
                 );
+                /*Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MapPickerPage(),
+                  ),
+                );*/
               },
               child: Text("Set Location"),
             )

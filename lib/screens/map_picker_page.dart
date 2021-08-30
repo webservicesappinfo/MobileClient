@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
+import 'package:grpc_test/services/user_service.dart';
+import 'package:grpc_test/services/auth.dart';
 //import 'package:place_picker/place_picker.dart';
 
 class MapPickerPage extends StatefulWidget {
@@ -41,7 +43,7 @@ class _MapPickerPageState extends State<MapPickerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Google Map Place Picer Demo"),
+          title: Text("Google Map Place"),
         ),
         body: Center(
           child: Column(
@@ -58,6 +60,12 @@ class _MapPickerPageState extends State<MapPickerPage> {
                         apiKey: 'AIzaSyBWDYa13kTf47oaSuLW-fLgJFaU1YdS8Bs',
                         onPlacePicked: (result) {
                           print(result.adrAddress);
+                          var user = AuthService().user;
+                          var location = result.geometry?.location;
+                          if (location != null && user != null) {
+                            user.location = LatLng(location.lat, location.lng);
+                            UserService.instance.setUserLocation(user);
+                          }
                           Navigator.of(context).pop();
                         },
                         initialPosition: MapPickerPage.kInitialPosition,

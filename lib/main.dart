@@ -55,8 +55,8 @@ class MyApp extends StatelessWidget {
         builder: (_, snapshot) {
           FirebaseAuth.instance.currentUser?.reload();
           final isSignedIn = snapshot.data != null && AuthService().isSignedIn;
-          //return isSignedIn ? HomePage() : LoginPage();
-          return MapPickerPage();
+          return isSignedIn ? HomePage() : LoginPage();
+          //return MapPickerPage();
         },
       ),
       title: "Grpc_test",

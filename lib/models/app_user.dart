@@ -1,9 +1,12 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class AppUser {
   final String? uidFB;
   final String? name;
   String? email;
   String? login;
   String? token;
+  LatLng? location;
   
   AppUser({this.uidFB, this.name, this.email, this.login});
 

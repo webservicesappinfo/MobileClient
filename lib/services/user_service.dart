@@ -1,11 +1,13 @@
+import 'dart:convert';
+
 import 'package:grpc_test/models/app_user.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc_test/generated/mobile_api_gen/mobile_api.pbgrpc.dart';
 import 'package:grpc_test/services/auth.dart';
 import 'package:grpc_test/global.dart' as global;
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class UserService {
   UserService._internal();
@@ -34,10 +36,13 @@ class UserService {
     var users = <AppUser>[];
     var response = await mobileApiClient
         .apiGetUsers(new ApiGetUsersRequest(restriction: null));
+    var curUserCaption = "${_currentUser?.name}/${_currentUser?.email}";
     for (var item in response.names) {
       var parts = item.split(':').toList();
-      if (parts.length > 1)
-        users.add(new AppUser(uidFB: parts[0], name: parts[1]));
+      if (parts.length > 1) {
+        if (parts[1] != curUserCaption)
+          users.add(new AppUser(uidFB: parts[0], name: parts[1]));
+      }
     }
     return users;
   }
@@ -53,6 +58,25 @@ class UserService {
     var reply = await mobileApiClient.apiSendMessage(new ApiSendMessageRequest(
         fromGuid: _currentUser?.uidFB, forGuid: anotherUser.uidFB, msg: msg));
     return reply.status;
+  }
+
+  Future<LatLng?> getUserLocation(AppUser user) async {
+    var reply = await mobileApiClient
+        .apiGetUserLocation(new ApiGetUserLocationRequest(guid: user.uidFB));
+    var lat = double.tryParse(reply.lat);
+    var lng = double.tryParse(reply.lng);
+    if (lat != null && lng != null) return LatLng(lat, lng);
+    return null;
+  }
+
+  Future<bool> setUserLocation(AppUser user) async {
+    if (user.location == null) return false;
+    var reply = await mobileApiClient.apiSetUserLocation(
+        new ApiSetUserLocationRequest(
+            forGuid: user.uidFB,
+            lat: user.location?.latitude.toString(),
+            lng: user.location?.longitude.toString()));
+    return reply.isSet;
   }
 
   /*Future<http.Response> post(AppUser? user, [bool checkInfo = false]) async {

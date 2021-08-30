@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapPage extends StatefulWidget {
-  MapPage({Key? key}) : super(key: key);
+  LatLng? location;
+  MapPage({Key? key, required this.location}) : super(key: key);
 
   @override
   _MapPageState createState() => _MapPageState();
@@ -12,6 +13,8 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   Completer<GoogleMapController> _controller = Completer();
+  Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
+  int _markerIdCounter = 0;
 
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -25,15 +28,47 @@ class _MapPageState extends State<MapPage> {
       zoom: 19.151926040649414);
 
   @override
+  void initState() {
+    _addMarker(
+        widget.location ?? LatLng(37.43296265331129, -122.08832357078792));
+    super.initState();
+  }
+
+  void _addMarker(LatLng location) {
+    final int markerCount = markers.length;
+
+    if (markerCount == 12) {
+      return;
+    }
+
+    final String markerIdVal = 'marker_id_$_markerIdCounter';
+    _markerIdCounter++;
+    final MarkerId markerId = MarkerId(markerIdVal);
+
+    final Marker marker = Marker(
+      markerId: markerId,
+      position: location,
+      infoWindow: InfoWindow(title: markerIdVal, snippet: '*'),
+      onTap: () {
+        //_onMarkerTapped(markerId);
+      },
+      onDragEnd: (LatLng position) {
+        //_onMarkerDragEnd(markerId, position);
+      },
+    );
+    markers[markerId] = marker;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return new Scaffold(
       body: GoogleMap(
-        mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-      ),
+          mapType: MapType.hybrid,
+          initialCameraPosition: _kGooglePlex,
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+          markers: Set<Marker>.of(markers.values)),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _goToTheLake,
         label: Text('To the lake!'),
@@ -45,6 +80,6 @@ class _MapPageState extends State<MapPage> {
 
   Future<void> _goToTheLake() async {
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+    controller..animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 }
