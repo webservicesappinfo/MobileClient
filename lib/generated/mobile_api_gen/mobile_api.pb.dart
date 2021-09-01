@@ -327,112 +327,112 @@ class ApiGetUsersReply extends $pb.GeneratedMessage {
   $core.List<$core.String> get names => $_getList(0);
 }
 
-class ApiGetLastMessageRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ApiGetLastMessageRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'mobileApi'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'guid')
+class ApiFindLastMessageRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ApiFindLastMessageRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'mobileApi'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fromGuid', protoName: 'fromGuid')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'forGuid', protoName: 'forGuid')
     ..hasRequiredFields = false
   ;
 
-  ApiGetLastMessageRequest._() : super();
-  factory ApiGetLastMessageRequest({
-    $core.String? guid,
+  ApiFindLastMessageRequest._() : super();
+  factory ApiFindLastMessageRequest({
+    $core.String? fromGuid,
+    $core.String? forGuid,
   }) {
     final _result = create();
-    if (guid != null) {
-      _result.guid = guid;
+    if (fromGuid != null) {
+      _result.fromGuid = fromGuid;
+    }
+    if (forGuid != null) {
+      _result.forGuid = forGuid;
     }
     return _result;
   }
-  factory ApiGetLastMessageRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ApiGetLastMessageRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory ApiFindLastMessageRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ApiFindLastMessageRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  ApiGetLastMessageRequest clone() => ApiGetLastMessageRequest()..mergeFromMessage(this);
+  ApiFindLastMessageRequest clone() => ApiFindLastMessageRequest()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ApiGetLastMessageRequest copyWith(void Function(ApiGetLastMessageRequest) updates) => super.copyWith((message) => updates(message as ApiGetLastMessageRequest)) as ApiGetLastMessageRequest; // ignore: deprecated_member_use
+  ApiFindLastMessageRequest copyWith(void Function(ApiFindLastMessageRequest) updates) => super.copyWith((message) => updates(message as ApiFindLastMessageRequest)) as ApiFindLastMessageRequest; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static ApiGetLastMessageRequest create() => ApiGetLastMessageRequest._();
-  ApiGetLastMessageRequest createEmptyInstance() => create();
-  static $pb.PbList<ApiGetLastMessageRequest> createRepeated() => $pb.PbList<ApiGetLastMessageRequest>();
+  static ApiFindLastMessageRequest create() => ApiFindLastMessageRequest._();
+  ApiFindLastMessageRequest createEmptyInstance() => create();
+  static $pb.PbList<ApiFindLastMessageRequest> createRepeated() => $pb.PbList<ApiFindLastMessageRequest>();
   @$core.pragma('dart2js:noInline')
-  static ApiGetLastMessageRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ApiGetLastMessageRequest>(create);
-  static ApiGetLastMessageRequest? _defaultInstance;
+  static ApiFindLastMessageRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ApiFindLastMessageRequest>(create);
+  static ApiFindLastMessageRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get guid => $_getSZ(0);
+  $core.String get fromGuid => $_getSZ(0);
   @$pb.TagNumber(1)
-  set guid($core.String v) { $_setString(0, v); }
+  set fromGuid($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasGuid() => $_has(0);
+  $core.bool hasFromGuid() => $_has(0);
   @$pb.TagNumber(1)
-  void clearGuid() => clearField(1);
+  void clearFromGuid() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get forGuid => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set forGuid($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasForGuid() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearForGuid() => clearField(2);
 }
 
-class ApiGetLastMessagesReply extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ApiGetLastMessagesReply', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'mobileApi'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'forGuid', protoName: 'forGuid')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'msg')
+class ApiFindLastMessagesReply extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ApiFindLastMessagesReply', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'mobileApi'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'msg')
     ..hasRequiredFields = false
   ;
 
-  ApiGetLastMessagesReply._() : super();
-  factory ApiGetLastMessagesReply({
-    $core.String? forGuid,
+  ApiFindLastMessagesReply._() : super();
+  factory ApiFindLastMessagesReply({
     $core.String? msg,
   }) {
     final _result = create();
-    if (forGuid != null) {
-      _result.forGuid = forGuid;
-    }
     if (msg != null) {
       _result.msg = msg;
     }
     return _result;
   }
-  factory ApiGetLastMessagesReply.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ApiGetLastMessagesReply.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory ApiFindLastMessagesReply.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ApiFindLastMessagesReply.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  ApiGetLastMessagesReply clone() => ApiGetLastMessagesReply()..mergeFromMessage(this);
+  ApiFindLastMessagesReply clone() => ApiFindLastMessagesReply()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ApiGetLastMessagesReply copyWith(void Function(ApiGetLastMessagesReply) updates) => super.copyWith((message) => updates(message as ApiGetLastMessagesReply)) as ApiGetLastMessagesReply; // ignore: deprecated_member_use
+  ApiFindLastMessagesReply copyWith(void Function(ApiFindLastMessagesReply) updates) => super.copyWith((message) => updates(message as ApiFindLastMessagesReply)) as ApiFindLastMessagesReply; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static ApiGetLastMessagesReply create() => ApiGetLastMessagesReply._();
-  ApiGetLastMessagesReply createEmptyInstance() => create();
-  static $pb.PbList<ApiGetLastMessagesReply> createRepeated() => $pb.PbList<ApiGetLastMessagesReply>();
+  static ApiFindLastMessagesReply create() => ApiFindLastMessagesReply._();
+  ApiFindLastMessagesReply createEmptyInstance() => create();
+  static $pb.PbList<ApiFindLastMessagesReply> createRepeated() => $pb.PbList<ApiFindLastMessagesReply>();
   @$core.pragma('dart2js:noInline')
-  static ApiGetLastMessagesReply getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ApiGetLastMessagesReply>(create);
-  static ApiGetLastMessagesReply? _defaultInstance;
+  static ApiFindLastMessagesReply getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ApiFindLastMessagesReply>(create);
+  static ApiFindLastMessagesReply? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get forGuid => $_getSZ(0);
+  $core.String get msg => $_getSZ(0);
   @$pb.TagNumber(1)
-  set forGuid($core.String v) { $_setString(0, v); }
+  set msg($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasForGuid() => $_has(0);
+  $core.bool hasMsg() => $_has(0);
   @$pb.TagNumber(1)
-  void clearForGuid() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get msg => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set msg($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasMsg() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearMsg() => clearField(2);
+  void clearMsg() => clearField(1);
 }
 
 class ApiSendMessageRequest extends $pb.GeneratedMessage {

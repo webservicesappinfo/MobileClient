@@ -21,7 +21,7 @@ class _ChatPageState extends State<ChatPage> {
       body: Form(
         key: UniqueKey(),
         child: FutureBuilder<String>(
-            future: UserService.instance.getLastMessage(widget.anotherUser),
+            future: UserService.instance.findLastMessage(widget.anotherUser),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Column(children: <Widget>[

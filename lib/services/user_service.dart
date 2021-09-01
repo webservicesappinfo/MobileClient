@@ -47,10 +47,10 @@ class UserService {
     return users;
   }
 
-  Future<String> getLastMessage(AppUser anotherUser) async {
-    var reply = await mobileApiClient.apiGetLastMessage(
-        new ApiGetLastMessageRequest(guid: anotherUser.uidFB));
-    //return _currentUser?.uidFB == reply.forGuid ? reply.msg : "";
+  Future<String> findLastMessage(AppUser anotherUser) async {
+    var reply = await mobileApiClient.apiFindLastMessage(
+        new ApiFindLastMessageRequest(
+            fromGuid: AuthService().user?.uidFB, forGuid: anotherUser.uidFB));
     return reply.msg;
   }
 
@@ -61,7 +61,7 @@ class UserService {
   }
 
   Future<LatLng?> getUserLocation(AppUser? user) async {
-    if(user == null) return null;
+    if (user == null) return null;
     var reply = await mobileApiClient
         .apiGetUserLocation(new ApiGetUserLocationRequest(guid: user.uidFB));
     var lat = double.tryParse(reply.lat);

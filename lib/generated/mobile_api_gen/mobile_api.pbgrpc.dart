@@ -32,18 +32,18 @@ class MobileApiClient extends $grpc.Client {
           ($0.ApiGetUsersRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.ApiGetUsersReply.fromBuffer(value));
-  static final _$apiGetLastMessage = $grpc.ClientMethod<
-          $0.ApiGetLastMessageRequest, $0.ApiGetLastMessagesReply>(
-      '/mobileApi.MobileApi/ApiGetLastMessage',
-      ($0.ApiGetLastMessageRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) =>
-          $0.ApiGetLastMessagesReply.fromBuffer(value));
   static final _$apiSendMessage =
       $grpc.ClientMethod<$0.ApiSendMessageRequest, $0.ApiSendMessageReply>(
           '/mobileApi.MobileApi/ApiSendMessage',
           ($0.ApiSendMessageRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.ApiSendMessageReply.fromBuffer(value));
+  static final _$apiFindLastMessage = $grpc.ClientMethod<
+          $0.ApiFindLastMessageRequest, $0.ApiFindLastMessagesReply>(
+      '/mobileApi.MobileApi/ApiFindLastMessage',
+      ($0.ApiFindLastMessageRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.ApiFindLastMessagesReply.fromBuffer(value));
   static final _$apiGetUserLocation = $grpc.ClientMethod<
           $0.ApiGetUserLocationRequest, $0.ApiGetUserLocationReply>(
       '/mobileApi.MobileApi/ApiGetUserLocation',
@@ -80,16 +80,16 @@ class MobileApiClient extends $grpc.Client {
     return $createUnaryCall(_$apiGetUsers, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.ApiGetLastMessagesReply> apiGetLastMessage(
-      $0.ApiGetLastMessageRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$apiGetLastMessage, request, options: options);
-  }
-
   $grpc.ResponseFuture<$0.ApiSendMessageReply> apiSendMessage(
       $0.ApiSendMessageRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$apiSendMessage, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.ApiFindLastMessagesReply> apiFindLastMessage(
+      $0.ApiFindLastMessageRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$apiFindLastMessage, request, options: options);
   }
 
   $grpc.ResponseFuture<$0.ApiGetUserLocationReply> apiGetUserLocation(
@@ -131,15 +131,6 @@ abstract class MobileApiServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.ApiGetUsersRequest.fromBuffer(value),
         ($0.ApiGetUsersReply value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.ApiGetLastMessageRequest,
-            $0.ApiGetLastMessagesReply>(
-        'ApiGetLastMessage',
-        apiGetLastMessage_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) =>
-            $0.ApiGetLastMessageRequest.fromBuffer(value),
-        ($0.ApiGetLastMessagesReply value) => value.writeToBuffer()));
     $addMethod(
         $grpc.ServiceMethod<$0.ApiSendMessageRequest, $0.ApiSendMessageReply>(
             'ApiSendMessage',
@@ -149,6 +140,15 @@ abstract class MobileApiServiceBase extends $grpc.Service {
             ($core.List<$core.int> value) =>
                 $0.ApiSendMessageRequest.fromBuffer(value),
             ($0.ApiSendMessageReply value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ApiFindLastMessageRequest,
+            $0.ApiFindLastMessagesReply>(
+        'ApiFindLastMessage',
+        apiFindLastMessage_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.ApiFindLastMessageRequest.fromBuffer(value),
+        ($0.ApiFindLastMessagesReply value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.ApiGetUserLocationRequest,
             $0.ApiGetUserLocationReply>(
         'ApiGetUserLocation',
@@ -184,16 +184,16 @@ abstract class MobileApiServiceBase extends $grpc.Service {
     return apiGetUsers(call, await request);
   }
 
-  $async.Future<$0.ApiGetLastMessagesReply> apiGetLastMessage_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ApiGetLastMessageRequest> request) async {
-    return apiGetLastMessage(call, await request);
-  }
-
   $async.Future<$0.ApiSendMessageReply> apiSendMessage_Pre(
       $grpc.ServiceCall call,
       $async.Future<$0.ApiSendMessageRequest> request) async {
     return apiSendMessage(call, await request);
+  }
+
+  $async.Future<$0.ApiFindLastMessagesReply> apiFindLastMessage_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.ApiFindLastMessageRequest> request) async {
+    return apiFindLastMessage(call, await request);
   }
 
   $async.Future<$0.ApiGetUserLocationReply> apiGetUserLocation_Pre(
@@ -214,10 +214,10 @@ abstract class MobileApiServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.ApiGetUserRequest request);
   $async.Future<$0.ApiGetUsersReply> apiGetUsers(
       $grpc.ServiceCall call, $0.ApiGetUsersRequest request);
-  $async.Future<$0.ApiGetLastMessagesReply> apiGetLastMessage(
-      $grpc.ServiceCall call, $0.ApiGetLastMessageRequest request);
   $async.Future<$0.ApiSendMessageReply> apiSendMessage(
       $grpc.ServiceCall call, $0.ApiSendMessageRequest request);
+  $async.Future<$0.ApiFindLastMessagesReply> apiFindLastMessage(
+      $grpc.ServiceCall call, $0.ApiFindLastMessageRequest request);
   $async.Future<$0.ApiGetUserLocationReply> apiGetUserLocation(
       $grpc.ServiceCall call, $0.ApiGetUserLocationRequest request);
   $async.Future<$0.ApiSetUserLocationReply> apiSetUserLocation(

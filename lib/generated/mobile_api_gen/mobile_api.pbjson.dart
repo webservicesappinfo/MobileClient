@@ -71,27 +71,27 @@ const ApiGetUsersReply$json = const {
 
 /// Descriptor for `ApiGetUsersReply`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List apiGetUsersReplyDescriptor = $convert.base64Decode('ChBBcGlHZXRVc2Vyc1JlcGx5EhQKBW5hbWVzGAEgAygJUgVuYW1lcw==');
-@$core.Deprecated('Use apiGetLastMessageRequestDescriptor instead')
-const ApiGetLastMessageRequest$json = const {
-  '1': 'ApiGetLastMessageRequest',
+@$core.Deprecated('Use apiFindLastMessageRequestDescriptor instead')
+const ApiFindLastMessageRequest$json = const {
+  '1': 'ApiFindLastMessageRequest',
   '2': const [
-    const {'1': 'guid', '3': 1, '4': 1, '5': 9, '10': 'guid'},
+    const {'1': 'fromGuid', '3': 1, '4': 1, '5': 9, '10': 'fromGuid'},
+    const {'1': 'forGuid', '3': 2, '4': 1, '5': 9, '10': 'forGuid'},
   ],
 };
 
-/// Descriptor for `ApiGetLastMessageRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List apiGetLastMessageRequestDescriptor = $convert.base64Decode('ChhBcGlHZXRMYXN0TWVzc2FnZVJlcXVlc3QSEgoEZ3VpZBgBIAEoCVIEZ3VpZA==');
-@$core.Deprecated('Use apiGetLastMessagesReplyDescriptor instead')
-const ApiGetLastMessagesReply$json = const {
-  '1': 'ApiGetLastMessagesReply',
+/// Descriptor for `ApiFindLastMessageRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List apiFindLastMessageRequestDescriptor = $convert.base64Decode('ChlBcGlGaW5kTGFzdE1lc3NhZ2VSZXF1ZXN0EhoKCGZyb21HdWlkGAEgASgJUghmcm9tR3VpZBIYCgdmb3JHdWlkGAIgASgJUgdmb3JHdWlk');
+@$core.Deprecated('Use apiFindLastMessagesReplyDescriptor instead')
+const ApiFindLastMessagesReply$json = const {
+  '1': 'ApiFindLastMessagesReply',
   '2': const [
-    const {'1': 'forGuid', '3': 1, '4': 1, '5': 9, '10': 'forGuid'},
-    const {'1': 'msg', '3': 2, '4': 1, '5': 9, '10': 'msg'},
+    const {'1': 'msg', '3': 1, '4': 1, '5': 9, '10': 'msg'},
   ],
 };
 
-/// Descriptor for `ApiGetLastMessagesReply`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List apiGetLastMessagesReplyDescriptor = $convert.base64Decode('ChdBcGlHZXRMYXN0TWVzc2FnZXNSZXBseRIYCgdmb3JHdWlkGAEgASgJUgdmb3JHdWlkEhAKA21zZxgCIAEoCVIDbXNn');
+/// Descriptor for `ApiFindLastMessagesReply`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List apiFindLastMessagesReplyDescriptor = $convert.base64Decode('ChhBcGlGaW5kTGFzdE1lc3NhZ2VzUmVwbHkSEAoDbXNnGAEgASgJUgNtc2c=');
 @$core.Deprecated('Use apiSendMessageRequestDescriptor instead')
 const ApiSendMessageRequest$json = const {
   '1': 'ApiSendMessageRequest',
