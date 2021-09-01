@@ -18,27 +18,33 @@ class ProfilePage extends StatelessWidget {
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PlacePicker(
-                      apiKey: 'AIzaSyBWDYa13kTf47oaSuLW-fLgJFaU1YdS8Bs',
-                      onPlacePicked: (result) {
-                        print(result.adrAddress);
-                        var user = AuthService().user;
-                        var location = result.geometry?.location;
-                        if (location != null && user != null) {
-                          user.location = LatLng(location.lat, location.lng);
-                          UserService.instance.setUserLocation(user);
-                        }
-                        Navigator.of(context).pop();
-                      },
-                      initialPosition: AuthService().user?.location ??
-                          LatLng(-33.8567844, 151.213108),
-                      useCurrentLocation: true,
-                    ),
-                  ),
-                );
+                var currentUserLocation =
+                    UserService.instance.getUserLocation(AuthService().user);
+                currentUserLocation.then((value) => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PlacePicker(
+                            apiKey: 'AIzaSyBWDYa13kTf47oaSuLW-fLgJFaU1YdS8Bs',
+                            onPlacePicked: (result) {
+                              print(result.adrAddress);
+                              var user = AuthService().user;
+                              var location = result.geometry?.location;
+                              if (location != null && user != null) {
+                                user.location =
+                                    LatLng(location.lat, location.lng);
+                                UserService.instance.setUserLocation(user);
+                              }
+                              Navigator.of(context).pop();
+                            },
+                            initialPosition:
+                                value ?? LatLng(-33.8567844, 151.213108),
+                            useCurrentLocation: false,
+                          ),
+                        ),
+                      )
+                    });
+
                 /*Navigator.push(
                   context,
                   MaterialPageRoute(

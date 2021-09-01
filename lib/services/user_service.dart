@@ -60,7 +60,8 @@ class UserService {
     return reply.status;
   }
 
-  Future<LatLng?> getUserLocation(AppUser user) async {
+  Future<LatLng?> getUserLocation(AppUser? user) async {
+    if(user == null) return null;
     var reply = await mobileApiClient
         .apiGetUserLocation(new ApiGetUserLocationRequest(guid: user.uidFB));
     var lat = double.tryParse(reply.lat);
