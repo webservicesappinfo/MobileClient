@@ -1,6 +1,6 @@
 // localhost
-String ip = '192.168.76.2';
-int port = 8080;
+/*String ip = '192.168.76.2';
+int port = 8080;*/
 
 // localhost work
 //String ip = '192.168.56.1';
@@ -11,5 +11,5 @@ int port = 8080;
 //int port = 8080;
 
 //VPS
-//String ip = 'www.wsai.pp.ua';
-//int port = 6084;
+String ip = 'www.wsai.pp.ua';
+int port = 8000;
